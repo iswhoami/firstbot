@@ -6,3 +6,4 @@ dp = Dispatcher()
 
 from bot.handlers import main_handler
 from bot.handlers import admin_handler
+from bot.handlers import portfolio_handler

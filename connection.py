@@ -1,12 +1,11 @@
 import aiosqlite
 from config import DB_PATH
 from errors import DBQueryException
-from logger import logger
 
 
 class Connection:
 
-    async def init(self, *args, **kwargs):
+    async def init_connection(self, *args, **kwargs):
         self._conn = await aiosqlite.connect(DB_PATH)
 
     async def execute(self, sql, *args):
@@ -20,7 +19,6 @@ class Connection:
                     return result
                 await self._conn.commit()
         except aiosqlite.Error as e:
-            logger.error('Run SQL-query, error: {}'.format(e))
             raise DBQueryException(str(e))
 
     async def execute_single_value(self, sql, *args):
@@ -30,7 +28,6 @@ class Connection:
                 if result is not None:
                     return result[0]
         except aiosqlite.Error as e:
-            logger.error('Run SQL-query, error: {}'.format(e))
             raise DBQueryException(str(e))
 
     async def execute_one_row(self, sql, *args):
@@ -43,7 +40,6 @@ class Connection:
                     await self._conn.commit()
                     return result
         except aiosqlite.Error as e:
-            logger.error('Run SQL-query, error: {}'.format(e))
             raise DBQueryException(str(e))
 
     async def execute_void(self, sql, *args):
@@ -51,7 +47,6 @@ class Connection:
             await self._conn.execute(sql, *args)
             await self._conn.commit()
         except aiosqlite.Error as e:
-            logger.error('Run SQL-query, error: {}'.format(e))
             raise DBQueryException(str(e))
 
     async def close(self):

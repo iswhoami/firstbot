@@ -44,7 +44,7 @@ async def menu_portfolio_handler(message: types.Message):
                            reply_markup=keyboard)
 
 
-@dp.message(F.text == "Написать мне")
+@dp.message(F.text == "Связаться со мной")
 async def menu_message_me_handler(message: types.Message):
     async with aiofiles.open(MY_LINK_PATH, 'r', encoding='utf-8') as text_file:
         link = await text_file.read()

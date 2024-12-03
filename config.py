@@ -10,4 +10,4 @@ INTERVIEW_PATH = os.path.join(BASEDIR, 'files', 'interview.txt')
 PORTFOLIO_PATH = os.path.join(BASEDIR, 'files', 'portfolio.txt')
 MY_LINK_PATH = os.path.join(BASEDIR, 'files', 'mylink.txt')
 
-admins = [6509528443]
+admins = [6509528444]
